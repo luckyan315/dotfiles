@@ -1,0 +1,98 @@
+# .bashrc
+
+HOME_NODE=$HOME/node_modules
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
+fi
+
+################################################################
+#User specific aliases and functions
+
+# nvm
+export NVM_NODEJS_ORG_MIRROR=http://dist.u.qiniudn.com
+export NVM_DIR=/home/angl/.nvm
+. /home/angl/.nvm/nvm.sh
+# default node version
+nvm use 0.10.26 > /dev/null 2>&1
+
+alias cnpm="npm --registry=http://registry.npm.taobao.org \
+--cache=$HOME/.npm/.cache/cnpm \
+--disturl=http://dist.cnpmjs.org \
+--userconfig=$HOME/.cnpmrc"
+
+alias fan='fanyi'
+
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+
+# Default to human readable figures
+alias df='df -h'
+alias du='du -h'
+
+alias less='less -r'                          # raw control characters
+alias whence='type -a'                        # where, of a sort
+alias grep='grep --color'                     # show differences in colour
+alias c='clear && pwd && ls'             # clear the screen easily
+
+# Git aliases for bash
+alias g='git'
+alias gst='git status'
+alias gl='git pull'
+alias gp='git push'
+alias gd='git diff | more'
+alias gc='git commit -v'
+alias gca='git commit -v -a'
+alias gb='git branch'
+alias gba='git branch -a'
+
+git config --global alias.co checkout
+git config --global alias.br branch
+git config --global alias.ci commit
+git config --global alias.st status
+git config --global alias.unstage 'reset HEAD --'
+git config --global alias.last 'log -p -1 HEAD'
+git config --global alias.visual "!gitk"
+
+source ~/.git-completion.sh > /dev/null 2>&1
+
+# Some shortcuts for different directory listings
+alias dir='ls --format=vertical'
+alias vdir='ls --format=long'
+alias ll='ls -l'                              # long list
+alias la='ls -A'                              # all but . and ..
+alias l='ls -CF'                              #
+
+alias latest="ls -lct1"
+alias ltree="ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'"
+
+alias diff='colordiff'
+
+alias cd..='cd ..'
+alias .='pwd'
+alias ..='cd .. && pwd'
+alias ...='cd ../.. && pwd'
+
+# Hug your mistake ^^
+alias sl=ls
+
+alias goautonavi='cd /home/angl/code/dev/autonavi/AMap_Android_Navi_Demo_V1.1.1/AMap_Android_Navi_Demo_V1.1.1'
+
+alias halt='sudo shutdown -h now'
+alias reboot='sudo reboot'
+
+alias gocard='cd ~/code/dev/now/Cardprovider/lifecard_app'
+
+# history completion
+bind '"\e[A": history-search-backward' > /dev/null 2>&1
+bind '"\e[B": history-search-forward' > /dev/null 2>&1
+
+# java env
+export JAVA_HOME=/usr/lib/java/java-7
+export JRE_HOME=${JAVA_HOME}/jre
+export CLASS_PATH=.:${JAVA_HOME}/lib:${JRE_HOME}/lib
+
+# PATH
+export PATH=${JAVA_HOME}/bin:${HOME}/bin:$PATH
