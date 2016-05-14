@@ -9,9 +9,9 @@
     // Motion commands: forward/backward word, identifiers (sexpression), beginning/end of file/window
     //
     {"keys": ["alt+f"], "command": "sbp_move_word", "args": {"direction": 1}, "context": [ {"key": "sbp_use_alt_bindings"}]},
-    {"keys": ["ctrl+alt+f"], "command": "sbp_move_sexpr", "args": {"direction": 1}, "context": [ {"key": "sbp_use_alt_bindings"}]},
+    // {"keys": ["ctrl+alt+f"], "command": "sbp_move_sexpr", "args": {"direction": 1}, "context": [ {"key": "sbp_use_alt_bindings"}]},
     {"keys": ["alt+b"], "command": "sbp_move_word", "args": {"direction": -1}, "context": [ {"key": "sbp_use_alt_bindings"}]},
-    {"keys": ["ctrl+alt+b"], "command": "sbp_move_sexpr", "args": {"direction": -1}, "context": [ {"key": "sbp_use_alt_bindings"}]},
+    // {"keys": ["ctrl+alt+b"], "command": "sbp_move_sexpr", "args": {"direction": -1}, "context": [ {"key": "sbp_use_alt_bindings"}]},
     {"keys": ["alt+c"], "command": "sbp_case_word", "args": {"direction": 1, "mode": "title"}, "context": [ {"key": "sbp_use_alt_bindings"}]},
 
     {"keys": ["alt+u"], "command": "sbp_case_word", "args": {"direction": 1, "mode": "upper"}, "context": [ {"key": "sbp_use_alt_bindings"}]},
@@ -426,5 +426,9 @@
   { "keys": ["alt+-"], "command": "jump_back" },
   { "keys": ["alt+shift+-"], "command": "jump_forward" },
 
-    { "keys": ["super+ctrl+j"], "command": "fix" }
+    { "keys": ["super+ctrl+j"], "command": "fix" },
+      {
+        "keys": ["ctrl+alt+f"], "command": "js_format",
+        "context": [{"key": "selector", "operator": "equal", "operand": "source.js,source.json"}]
+    }
 ]
