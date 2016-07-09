@@ -1,0 +1,178 @@
+;;An's emacs
+
+;; global path config
+(add-to-list 'load-path "~/.emacs.d/site-lisp/")
+(add-to-list 'load-path "~/.emacs.d/site-lisp/org/lisp")
+(add-to-list 'load-path "~/.emacs.d/site-lisp/org/contrib/lisp")
+
+;;show imenu list
+(require 'imenu-list)
+(global-set-key (kbd "C-o") #'imenu-list-minor-mode)
+
+;;(Ctrl + `)  Eval lisp
+(global-set-key (kbd "C-`") 'eval-last-sexp)
+
+;;load xcscope
+(load-file "~/.emacs.d/site-lisp/xcscope.el/xcscope.el")
+(require 'xcscope)
+(cscope-setup)
+
+(global-set-key (kbd "M--") 'previous-buffer)
+(global-set-key (kbd "M-_") 'next-buffer)
+
+;; emacs shortcut support on chrome
+(require 'edit-server)
+(edit-server-start)
+
+;; disalbe toolbar
+(menu-bar-mode nil)
+
+;; emacs whitespace mode
+(require 'whitespace)
+(global-whitespace-mode)
+(setq whitespace-style
+      '(face trailing tabs lines lines-tail empty
+	     space-after-tab space-before-tab))
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+
+(global-set-key (kbd "M-[") 'backward-paragraph)
+(global-set-key (kbd "M-]") 'forward-paragraph)
+
+
+;;; 各窗口间切换
+(global-set-key (kbd "M-<left>") 'windmove-left)
+
+(global-set-key (kbd "M-<right>") 'windmove-right)
+
+(global-set-key (kbd "M-<up>") 'windmove-up)
+
+(global-set-key (kbd "M-<down>") 'windmove-down)
+
+;; set the smooth-scroll
+(add-to-list 'load-path "~/.emacs.d/site-lisp/smooth-scroll/")
+(require 'smooth-scroll)
+
+(global-set-key (kbd "M-n") 'scroll-up-1)
+(global-set-key (kbd "M-p") 'scroll-down-1)
+
+;;find-file-suggest
+(require 'find-file-suggest)
+(global-set-key [(control x) (meta f)] 'find-file-suggest)
+(global-set-key [(control x) (meta g)] 'ffs-grep)
+
+(ffs-create-file-index "cloudcard" "~/code/work/cloudcard/" "\\.js$\\|\\.json$\\|\\.lua" "\\doc$\\|\\node_modules$")
+
+;; hightligt parenttheses
+(require 'highlight-parentheses)
+
+;;  show line numbers
+(require 'linum)
+(global-linum-mode 1)
+
+;;### Scroll mode line###
+(require 'scroll-mode-line-mode)
+
+;;include js2-mode
+(require 'cr-js)
+
+;; ;;js2-highlight vars
+;; (require 'js2-highlight-vars)
+;; (if (featurep 'js2-highlight-vars)
+;;     (js2-highlight-vars-mode))
+
+(add-to-list 'load-path "~/.emacs.d/site-lisp/ecb")
+(require 'ecb)
+
+;;comment/ uncomment
+(defun qiang-comment-dwim-line (&optional arg)
+  "Replacement for the comment-dwim command.
+If no region is selected and current line is not blank and we are not at the end of the line,
+then comment current line.
+Replaces default behaviour of comment-dwim, when it inserts comment at the end of the line."
+  (interactive "*P")
+  (comment-normalize-vars)
+  (if (and (not (region-active-p)) (not (looking-at "[ \t]*$")))
+      (comment-or-uncomment-region (line-beginning-position) (line-end-position))
+    (comment-dwim arg)))
+(global-set-key "\M-;" 'qiang-comment-dwim-line)
+
+;; Smart copy, if no region active, it simply copy the current whole line
+(defadvice kill-line (before check-position activate)
+  (if (member major-mode
+              '(emacs-lisp-mode scheme-mode lisp-mode
+                                c-mode c++-mode objc-mode js-mode
+                                latex-mode plain-tex-mode))
+      (if (and (eolp) (not (bolp)))
+          (progn (forward-char 1)
+                 (just-one-space 0)
+                 (backward-char 1)))))
+
+(defadvice kill-ring-save (before slick-copy activate compile)
+  "When called interactively with no active region, copy a single line instead."
+  (interactive (if mark-active (list (region-beginning) (region-end))
+                 (message "Copied line")
+                 (list (line-beginning-position)
+                       (line-beginning-position 2)))))
+
+(defadvice kill-region (before slick-cut activate compile)
+  "When called interactively with no active region, kill a single line instead."
+  (interactive
+   (if mark-active (list (region-beginning) (region-end))
+     (list (line-beginning-position)
+           (line-beginning-position 2)))))
+
+;; Copy line from point to the end, exclude the line break
+(defun qiang-copy-line (arg)
+  "Copy lines (as many as prefix argument) in the kill ring"
+  (interactive "p")
+  (kill-ring-save (point)
+                  (line-end-position))
+  ;; (line-beginning-position (+ 1 arg)))
+  (message "%d line%s copied" arg (if (= 1 arg) "" "s")))
+
+(global-set-key (kbd "M-k") 'qiang-copy-line)
+
+;; 显示列号
+(setq column-number-mode t)
+
+;; 不要总是没完没了的问yes or no, 为什么不能用y/n
+(fset 'yes-or-no-p 'y-or-n-p)
+
+;;highlight the word
+(load-file "~/.emacs.d/site-lisp/highlight-symbol.el")
+(require 'highlight-symbol)
+;;(global-set-key "/C-cgg" 'highlight-symbol-at-point)
+(global-set-key [(control f3)] 'highlight-symbol-at-point)
+(global-set-key [f3] 'highlight-symbol-next)
+(global-set-key [(shift f3)] 'highlight-symbol-prev)
+(global-set-key [(meta f3)] 'highlight-symbol-prev)
+
+;;在buffer和shell之间快速切换需要加载shell-toggle.el
+(autoload 'shell-toggle "shell-toggle"
+  "Toggles between the *shell* buffer and whatever buffer you are editing." t)
+(autoload 'shell-toggle-cd "shell-toggle"
+  "Pops up a shell-buffer and insert a \"cd <file-dir>\" command." t)
+(global-set-key [C-] 'shell-toggle-cd)
+
+;;在buffer和shell之间快速切换END
+;;不产生备份文件,临时文件
+(setq make-backup-files nil)
+(setq-default make-backup-files nil)
+
+;; menlo font
+(set-frame-font "Menlo:pixelsize=18")
+;; If you use Emacs Daemon mode
+(add-to-list 'default-frame-alist
+                            (cons 'font "Menlo:pixelsize=18"))
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(ecb-options-version "2.40"))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
