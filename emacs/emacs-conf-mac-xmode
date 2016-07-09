@@ -5,6 +5,9 @@
 (add-to-list 'load-path "~/.emacs.d/site-lisp/org/lisp")
 (add-to-list 'load-path "~/.emacs.d/site-lisp/org/contrib/lisp")
 
+;; desktop save
+(desktop-save-mode 1)
+
 ;;show imenu list
 (require 'imenu-list)
 (global-set-key (kbd "C-o") #'imenu-list-minor-mode)
