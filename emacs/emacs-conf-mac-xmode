@@ -5,6 +5,32 @@
 (add-to-list 'load-path "~/.emacs.d/site-lisp/org/lisp")
 (add-to-list 'load-path "~/.emacs.d/site-lisp/org/contrib/lisp")
 
+
+;; ;;;; CC-mode配置  http://cc-mode.sourceforge.net/
+(add-to-list 'load-path "~/.emacs.d/site-lisp/cc-mode")
+(require 'cc-mode)
+(c-set-offset 'inline-open 0)
+(c-set-offset 'friend '-)
+(c-set-offset 'substatement-open 0)
+
+;; ;;;;我的C++语言编辑策略
+(defun my-c++-mode-hook()
+  (setq tab-width 4)
+  (setq indent-tabs-mode t)
+  (c-set-offset 'substatement-open 0)
+  (c-set-style "bsd")
+  (setq c-basic-offset 4)
+  ;; ;;;minor modes
+  ;; (auto-fill-mode 1)
+  ;; cscope hot-key would be not work!!!!!
+  ;; (c-turn-on-eldoc-mode)
+  ;;local keys
+  (local-set-key [return] 'newline-and-indent)
+  ;;  (define-key c++-mode-map [f3] 'replace-regexp)
+  )
+
+(add-hook 'c-mode-common-hook 'my-c++-mode-hook)
+
 ;; flx support
 (require 'flx-ido)
 (ido-mode 1)
