@@ -1,1 +1,30 @@
-<mxfile host="app.diagrams.net" modified="2022-07-09T02:24:14.545Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.0.0 Safari/537.36" version="20.0.4" etag="z4J3mDoLxnRHauCDumLc" type="github"><diagram id="GFBi86Y5M8hVDYYg-J3f">UzV2zq1wL0osyPDNT0nNUTV2VTV2LsrPL4GwciucU3NyVI0MMlNUjV1UjYwMgFjVyA2HrCFY1qAgsSg1rwSLBiADYTaQg2Y1AA==</diagram></mxfile>
+<mxfile host="app.diagrams.net" modified="2022-07-09T07:59:32.712Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.0.0 Safari/537.36" etag="3b9UGwBdRtrd89AAECjP" version="20.0.4" type="github">
+  <diagram id="GFBi86Y5M8hVDYYg-J3f" name="Page-1">
+    <mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="FEH4WWXBPxlkjgHYf7Cm-3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="FEH4WWXBPxlkjgHYf7Cm-1" target="FEH4WWXBPxlkjgHYf7Cm-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FEH4WWXBPxlkjgHYf7Cm-1" value="build.sh" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="70" y="160" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="FEH4WWXBPxlkjgHYf7Cm-5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="FEH4WWXBPxlkjgHYf7Cm-2" target="FEH4WWXBPxlkjgHYf7Cm-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FEH4WWXBPxlkjgHYf7Cm-6" value="fork" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="FEH4WWXBPxlkjgHYf7Cm-5">
+          <mxGeometry x="0.25" y="3" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FEH4WWXBPxlkjgHYf7Cm-2" value="entry.py" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="260" y="160" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="FEH4WWXBPxlkjgHYf7Cm-4" value="lite/build.py" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="450" y="160" width="110" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
