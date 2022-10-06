@@ -15,6 +15,9 @@
 
 (package-initialize)
 
+(when (memq window-system '(mac ns x))
+  (exec-path-from-shell-initialize))
+
 (unless package-archive-contents
   (package-refresh-contents))
 
@@ -348,7 +351,7 @@
    '("e87f48ec4aebdca07bb865b90088eb28ae4b286ee8473aadb39213d361d0c45f" default))
  '(helm-minibuffer-history-key "M-p")
  '(package-selected-packages
-   '(yasnippet eglot lsp-java exwm vterm pyvenv python-mode typescript-mode dap-mode lsp-ivy lsp-treemacs lsp-ui lsp-mode magit counsel-projectile projectile company-box company ivy evil-collection which-key dired-hide-dotfiles dired-open all-the-icons-dired dired-single helpful ivy-prescient counsel ivy-rich eterm-256color rainbow-delimiters doom-modeline command-log-mode visual-fill-column swift-mode simpleclip racer org-present material-theme markdown-toc js2-mode javadoc-lookup java-imports imenu-list helm-rtags helm-projectile helm-gtags helm-cscope helm-ag gn-mode gitignore-mode fuzzy flycheck-swift3 flycheck-rust flycheck-kotlin flycheck-irony find-file-in-project eopengrok ctags-update ctable cpputils-cmake company-sourcekit company-rtags company-irony-c-headers company-irony cmake-project cmake-ide charmap cargo auto-yasnippet ack))
+   '(exec-path-from-shell yasnippet eglot lsp-java exwm vterm pyvenv python-mode typescript-mode dap-mode lsp-ivy lsp-treemacs lsp-ui lsp-mode magit counsel-projectile projectile company-box company ivy evil-collection which-key dired-hide-dotfiles dired-open all-the-icons-dired dired-single helpful ivy-prescient counsel ivy-rich eterm-256color rainbow-delimiters doom-modeline command-log-mode visual-fill-column swift-mode simpleclip racer org-present material-theme markdown-toc js2-mode javadoc-lookup java-imports imenu-list helm-rtags helm-projectile helm-gtags helm-cscope helm-ag gn-mode gitignore-mode fuzzy flycheck-swift3 flycheck-rust flycheck-kotlin flycheck-irony find-file-in-project eopengrok ctags-update ctable cpputils-cmake company-sourcekit company-rtags company-irony-c-headers company-irony cmake-project cmake-ide charmap cargo auto-yasnippet ack))
  '(size-indication-mode t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
