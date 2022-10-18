@@ -1,0 +1,14 @@
+pane	0	0	:..ls/system/lib	0	:	0	:/Volumes/aosp/out/target/product/generic_x86/symbols/system/lib	1	zsh	:
+pane	0	1	:..heck/java/ori	1	:*	0	:/Volumes/aosp/MapleRuntimeCheck/java/ori	1	zsh	:rdm
+pane	0	1	:..heck/java/ori	1	:*	1	:/Volumes/aosp/MapleRuntimeCheck/java	0	zsh	:
+pane	0	2	:/Volumes/aosp	0	:-	0	:/Volumes/aosp	1	zsh	:
+pane	0	3	:..kotlin-native	0	:	0	:/Users/anguanglin/code/github/kotlin-native	1	zsh	:
+pane	0	4	:..sp/frameworks	0	:	0	:/Volumes/aosp/frameworks	1	zsh	:
+pane	2	0	:~/code/test	1	:*	0	:/Users/anguanglin/code/test	1	zsh	:
+window	0	0	0	:	c15d,238x54,0,0,0
+window	0	1	1	:*	e68e,238x54,0,0[238x42,0,0,3,238x11,0,43,12]
+window	0	2	0	:-	c166,238x54,0,0,9
+window	0	3	0	:	60df,238x54,0,0,10
+window	0	4	0	:	60e0,238x54,0,0,11
+window	2	0	1	:*	b5c5,173x42,0,0,8
+state	0	
